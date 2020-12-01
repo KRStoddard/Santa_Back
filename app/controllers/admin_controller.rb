@@ -24,6 +24,7 @@ class AdminController < ApplicationController
 
     def auto_login
         render json: logged_in_user
+    end
 
     private
 
