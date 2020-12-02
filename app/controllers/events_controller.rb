@@ -11,6 +11,11 @@ def create
     render json: event
 end
 
+def show
+    event= Event.find_by({code: params[:id]})
+    render json: event
+end
+
 private
 
 def event_params(*args)
