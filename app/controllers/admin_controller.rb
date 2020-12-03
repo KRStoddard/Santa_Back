@@ -1,15 +1,6 @@
 class AdminController < ApplicationController
     before_action :authorized, only: [:auto_login]
 
-    def show
-        admin = Admin.find(params[:id])
-        if admin 
-            render json: admin
-        else
-            render json: {errors: "Please login"}
-        end
-    end
-
     def create
         admin = Admin.create(admin_params(:first_name, :last_name, :email, :password))
         if admin.valid?
