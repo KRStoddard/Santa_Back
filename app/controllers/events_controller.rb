@@ -12,9 +12,22 @@ def create
 end
 
 def show
-    event= Event.find_by({code: params[:id]})
-    render json: event
+    event = Event.find_by({code: params[:id]})
+    if event
+        render json: event
+    else
+        render json: {error: 'no such event code'}
+    end
 end
+
+def update
+    puts "hits update"
+    event = Event.find_by({code: params[:id]})
+    puts event
+    event.match
+    event.users.each{|user| MatchMailer.match_email(user).deliver_now}
+end
+
 
 private
 
