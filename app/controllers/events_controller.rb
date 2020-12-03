@@ -13,7 +13,8 @@ def create
     end
     if params[:events][:add].present?
         admin = Admin.find(event.admin_id)
-        User.create({first_name: admin.first_name, last_name: admin.last_name, email: admin.email, event_id: event.id})
+        user = User.create({first_name: admin.first_name, last_name: admin.last_name, email: admin.email, event_id: event.id})
+        user.update(event_params(:ideas))
     end
     render json: event
 end

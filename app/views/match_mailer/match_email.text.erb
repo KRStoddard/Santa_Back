@@ -3,6 +3,8 @@ Dear <%= @user.first_name %>,
 Thank you for agreeing to particpate in this Secret Santa event!
 The person you will be giving a gift to is.... 
 <%= @match.first_name %> <%= @match.last_name %>
+Some gift ideas they had for you are...
+<%= @match.ideas %>
 Have fun and good luck!
 Sincerely,
 The Secret Santa Team

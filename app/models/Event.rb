@@ -7,7 +7,6 @@ class Event < ApplicationRecord
         self.users.each do |user|
             while !user.match
                 match = self.users.sample
-                puts "hits match"
                 if ((!gifted_array.include? match.id) && (user.id != match.id))
                     user.update({match: match.id})
                 end
