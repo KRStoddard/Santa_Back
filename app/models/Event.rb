@@ -5,15 +5,15 @@ class Event < ApplicationRecord
     # matches users together so that each person is only matched once
     # it's not, like....SUPER efficient. But it works.
     def match
-        gifted_array = []
+        not_gifted_array = self.users.map{|user| user.id}
         self.users.each do |user|
             while !user.match
-                match = self.users.sample
-                if ((!gifted_array.include? match.id) && (user.id != match.id))
-                    user.update({match: match.id})
+                match = not_gifted_array.sample
+                if (user.id != match)
+                    not_gifted_array.delete(match)
+                    user.update({match: match})
                 end
             end
-            gifted_array.push(user.match)
         end
     end
      
